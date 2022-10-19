@@ -23,6 +23,11 @@
       "destination": "/var/tmp/unpack.tgz"
     }, 
     {
+      "type": "file",
+      "source": "mountup",
+      "destination": "/var/tmp/mountup"
+    }, 
+    {
       "type": "shell",
       "script": "provision.sh"
     }
