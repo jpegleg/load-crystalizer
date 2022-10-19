@@ -1,0 +1,3 @@
+packer build -var ‘aws_access_key=$KEYID' -var 'aws_secret_key=$SECRETKEY' $BUILDJSON
+terraform plan -out $PLANFILE
+terraform apply $PLANFILE
