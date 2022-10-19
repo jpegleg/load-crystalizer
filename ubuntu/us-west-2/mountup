@@ -9,4 +9,5 @@ ln -sf /mnt/var2/log/audit /var/log/audit
 mv /var/lib/docker /mnt/var/
 ln -sf /mnt/var/docker /var/lib/docker
 cd /var/tmp/
+systemctl restart docker
 docker-compose up -d
