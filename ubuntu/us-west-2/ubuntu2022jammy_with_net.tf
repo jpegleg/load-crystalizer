@@ -28,7 +28,19 @@ resource "aws_instance" "ubuntu22jammy" {
   instance_type          = "t2.small"
   key_name               = "aws_key"
   vpc_security_group_ids = [aws_security_group.main.id]
- 
+  connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("./id_ed25519")
+    host     = self.public_ip
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /var/tmp/mountup",
+      "sudo /var/tmp/mountup",
+    ]
+  }
+
 }
 resource "aws_security_group" "main" {
   egress = [
