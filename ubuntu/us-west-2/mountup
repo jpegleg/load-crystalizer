@@ -1,0 +1,12 @@
+mkfs.xfs /dev/xvdba
+mkfs.xfs /dev/xvdbb
+mkdir -p /mnt/var/
+mkdir -p /mnt/var2/log/audit/
+echo "$(blkid -o export /dev/xvdba | grep ^UUID=) /mnt/var/ xfs defaults,noatime" | tee -a /etc/fstab
+echo "$(blkid -o export /dev/xvdbb | grep ^UUID=) /mnt/var2/log/audit/ xfs defaults,noatime" | tee -a /etc/fstab
+mount -a
+ln -sf /mnt/var2/log/audit /var/log/audit
+mv /var/lib/docker /mnt/var/
+ln -sf /mnt/var/docker /var/lib/docker
+cd /var/tmp/
+docker-compose up -d
