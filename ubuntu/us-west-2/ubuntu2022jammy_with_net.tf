@@ -6,7 +6,24 @@ provider "aws" {
 }
  
 resource "aws_instance" "ubuntu22jammy" {
- 
+  ebs_block_device{
+      device_name = "/dev/xvdba"
+      volume_size = 12
+      volume_type = "gp2"
+      tags = {
+        "FileSystem": "/mnt/var/"
+      }
+  }
+  ebs_block_device{
+      device_name = "/dev/xvdbb"
+      volume_size = 2
+      volume_type = "gp2"
+      tags = {
+        "FileSystem": "/mnt/var2"
+      }
+
+  }
+
   ami                    = "MYAMIGOESHERE"
   instance_type          = "t2.small"
   key_name               = "aws_key"
