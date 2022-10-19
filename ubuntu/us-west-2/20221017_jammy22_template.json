@@ -12,18 +12,19 @@
       "source_ami": "ami-0a22ed271d3dbf544",
       "instance_type": "t2.small",
       "ssh_username": "ubuntu",
-      "ami_name": "ubuntu22jammy {{timestamp}}"
+      "ami_name": "ubuntu22jammy {{timestamp}}",
+      "encrypt_boot": true
     }
   ],
   "provisioners": [
     {
-      "type": "shell",
-      "script": "provision.sh"
-    },
-    {
       "type": "file",
       "source": "jammy_crystals.tgz",
       "destination": "/var/tmp/unpack.tgz"
-    } 
+    }, 
+    {
+      "type": "shell",
+      "script": "provision.sh"
+    }
    ]
 }
