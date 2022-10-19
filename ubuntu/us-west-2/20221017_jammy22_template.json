@@ -23,7 +23,7 @@
     {
       "type": "file",
       "source": "jammy_crystals.tgz",
-      "destination": "/unpack.tgz"
+      "destination": "/var/tmp/unpack.tgz"
     } 
    ]
 }
