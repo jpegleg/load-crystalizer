@@ -10,15 +10,14 @@ sudo /usr/sbin/ufw default allow outgoing
 sudo /usr/sbin/ufw default deny incoming
 sudo /usr/sbin/ufw allow 22/tcp
 sudo /usr/sbin/ufw allow 443/tcp
-yes | sudo systemctl enable ufw
-# If we reload too quickly after the above, it will fail...
-# it still might fail to enable and reload ufw.
-# I am also having a separate program enforce ufw, not included here.
-sleep 2
-yes | sudo /usr/sbin/ufw reload
-# Pull down jpegleg repos
-git clone https://github.com/jpegleg/jpegleg-lib
-cd jpegleg-lib
-bash clone.sh
+# Pull down jpegleg repos - uncomment to check out copies of the jpegleg repos in the AMI (example)
+#git clone https://github.com/jpegleg/jpegleg-lib
+#cd jpegleg-lib
+#bash clone.sh
 sudo systemctl enable ssh
 sudo systemctl restart ssh
+
+# WARNING: ufw to be enabled separately "ufw enable; ufw reload" as enable and reload don't actually work correctly here so far
+# When ufw is enabled, the rules are there at least.
+
+# Design note: enforce ufw with a state enforcing mechanism (daemon, agent, function, etc)
