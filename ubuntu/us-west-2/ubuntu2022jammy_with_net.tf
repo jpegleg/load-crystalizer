@@ -4,7 +4,11 @@ provider "aws" {
   profile = "default"
  
 }
- 
+
+resource "aws_ebs_encryption_by_default" "enabled" {
+     enabled = true
+}
+
 resource "aws_instance" "ubuntu22jammy" {
   ebs_block_device{
       device_name = "/dev/xvdba"
